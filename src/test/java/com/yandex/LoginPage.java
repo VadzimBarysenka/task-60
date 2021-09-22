@@ -17,9 +17,9 @@ public class LoginPage {
     @FindBy(id = "passp:sign-in")
     private WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+    public LoginPage () {
+        PageFactory.initElements(WebDriverSingleton.getInstance().getDriver(), this);
+        this.driver = WebDriverSingleton.getInstance().getDriver();
     }
 
     public MailPage loginToMail(String name, String password) {
@@ -27,7 +27,7 @@ public class LoginPage {
         loginButton.click();
         userPasswordField.sendKeys(password);
         loginButton.click();
-        return new MailPage(driver);
+        return new MailPage();
     }
 
     public String getLoginPageTitle() {

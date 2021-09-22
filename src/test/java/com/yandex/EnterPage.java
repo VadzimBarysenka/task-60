@@ -12,14 +12,14 @@ public class EnterPage {
     @FindBy(xpath = "//a[contains(@class, \"HeadBanner-Button-Enter\")]")
     private WebElement enterButton;
 
-    public EnterPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+    public EnterPage() {
+        PageFactory.initElements(WebDriverSingleton.getInstance().getDriver(), this);
+        this.driver = WebDriverSingleton.getInstance().getDriver();
         this.driver.get(URL);
     }
 
     public LoginPage enterToLoginPage() {
         enterButton.click();
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 }

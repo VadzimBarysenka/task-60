@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogOutTest {
-    WebDriver driver;
-    MailPage mailPage;
+    private WebDriver driver;
+    private MailPage mailPage;
     private final String USER_NAME = "someuserfortest";
     private final String USER_PASSWORD = "!QAZxsw2";
     private final String LOGIN_PAGE_TITLE = "Authorization";
@@ -21,7 +21,7 @@ public class LogOutTest {
         driver = WebDriverSingleton.getInstance().getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        EnterPage enter = new EnterPage(driver);
+        EnterPage enter = new EnterPage();
         LoginPage loginPage = enter.enterToLoginPage();
         mailPage = loginPage.loginToMail(USER_NAME, USER_PASSWORD);
     }
