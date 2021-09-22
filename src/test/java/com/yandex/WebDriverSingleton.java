@@ -4,10 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebDriverSingleton {
-
+    private final WebDriver driver;
     private static WebDriverSingleton instance;
 
     private WebDriverSingleton() {
+        this.driver = new ChromeDriver();
     }
 
     public static WebDriverSingleton getInstance() {
@@ -18,6 +19,6 @@ public class WebDriverSingleton {
     }
 
     public WebDriver getDriver() {
-        return new ChromeDriver();
+        return driver;
     }
 }

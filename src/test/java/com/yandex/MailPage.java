@@ -10,10 +10,11 @@ public class MailPage {
     private final WebDriver driver;
     private final By userName = By.xpath("//a[contains(@class, \"legouser__current-account\")]/span[@class=\"user-account__name\"]");
     private final By logOut = By.xpath("//a[@aria-label=\"Log out\"]");
+    private final By searchField = By.className("search-bubble-list__bubble-wrap");
 
-    public MailPage(WebDriver driver) {
-        this.driver = driver;
-        new WebDriverWait(this.driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.className("search-bubble-list__bubble-wrap")));
+    public MailPage() {
+        this.driver = WebDriverSingleton.getInstance().getDriver();
+        new WebDriverWait(this.driver, 5).until(ExpectedConditions.presenceOfElementLocated(searchField));
     }
 
     public String getUserName() {
@@ -25,6 +26,6 @@ public class MailPage {
         nameLink.click();
         WebElement logout = driver.findElement(logOut);
         logout.click();
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 }

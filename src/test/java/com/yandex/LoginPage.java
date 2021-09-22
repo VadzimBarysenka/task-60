@@ -10,8 +10,8 @@ public class LoginPage {
     private final By userPasswordField = By.id("passp-field-passwd");
     private final By loginButton = By.id("passp:sign-in");
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = WebDriverSingleton.getInstance().getDriver();
     }
 
     public MailPage loginToMail(String name, String password) {
@@ -23,7 +23,7 @@ public class LoginPage {
         passwordField.sendKeys(password);
         WebElement signInButton = driver.findElement(loginButton);
         signInButton.click();
-        return new MailPage(driver);
+        return new MailPage();
     }
 
     public String getLoginPageTitle() {
